@@ -164,6 +164,7 @@ async function submitToLeaderboard() {
       return;
     }
   }
+  dots.value = numDots;
   await axios.post(`/scores`, {dots: numDots, score: lastScore.toFixed(2), name: name.value});
   message.innerHTML = 'Score submitted!';
   showLeaderboard();
