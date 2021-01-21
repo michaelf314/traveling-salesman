@@ -159,7 +159,7 @@ async function submitToLeaderboard() {
   }
   else {
     let pr = leaderboard.find((score) => score.name === name.value);
-    if (pr && pr.score <= lastScore) {
+    if (currentLeaderboard === numDots && pr && pr.score <= lastScore) {
       message.innerHTML = 'You did not beat your personal record';
       return;
     }
