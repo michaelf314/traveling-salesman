@@ -1,0 +1,59 @@
+body {
+  text-align: center;
+}
+
+#start {
+  margin: 10px 30px 0px 0px;
+}
+
+#dots {
+  width: 40px;
+}
+
+#canvas {
+  border: 4px solid black;
+  margin: 10px;
+  display: inline-block;
+  position: relative;
+}
+
+#scores span, #avgscore span, #score {
+  font-weight: bold;
+  font-size: 125%;
+}
+
+.hidden {
+  display: none;
+}
+
+#scorediv {
+  position: absolute;
+  left: 425px;
+  width: 250px;
+}
+
+#leaderboarddiv {
+  position: absolute;
+  right: 425px;
+  width: 300px;
+  height: 450px;
+  overflow: auto;
+  text-align: right;
+}
+
+#leaderboarddiv span {
+  width: 75px;
+  display: inline-block;
+}
+
+#distance {
+  margin: 0 30px 0 30px;
+}
+
+#submitdiv, #name {
+  margin: 10px;
+}
+
+#name {
+  width: 150px;
+}

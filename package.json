@@ -1,0 +1,16 @@
+{
+  "name": "traveling-salesman",
+  "version": "1.0.0",
+  "description": "Visit every dot and return to the start. Low scores are better.  Score is based on distance and time, so find a short route as fast as you can.",
+  "main": "script.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "mongoose": "^5.11.13"
+  }
+}

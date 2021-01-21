@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>Traveling Salesman</title>
+    <link href="style.css" rel="stylesheet" type="text/css" />
+  </head>
+  <body>
+    <div>
+      <b>Traveling Salesman</b>
+      <br>Visit every dot and return to the start. Low scores are better.
+      <br>Score is based on distance and time, so find a short route as fast as you can.
+      <br><input type="button" id="start" value="Start new game">
+      <label for="dots"># dots (3-50)</label>
+      <input type="number" value="15" min="3" max="50" id="dots" onclick="this.select()">
+    </div>
+    <div id="canvas">
+      <div id="leaderboarddiv"></div>
+      <div id="scorediv">
+        <div id="scores"></div>
+        <div id="avgscore"></div>
+      </div>
+      <canvas></canvas>
+    </div>
+    <div id="submitdiv">
+      <span id="timer">Time: 0.0</span>
+      <span id="distance">Distance: 0.0</span>
+      <span id="score">Score: ?</span>
+      <br><input type="text" id="name" maxlength="10" placeholder="Enter your name">
+      <button id="submit" disabled>Submit to leaderboard</button>
+      <br><div id="message"></div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="index.js"></script>
+  </body>
+</html>
