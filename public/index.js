@@ -1,6 +1,7 @@
 const canvas = document.querySelector('canvas');
 const start = document.querySelector('#start');
 const dots = document.querySelector('#dots');
+const leaderboardbutton = document.querySelector('#leaderboardbutton');
 const leaderboarddiv = document.querySelector('#leaderboarddiv');
 const scorediv = document.querySelector('#scorediv');
 const scores = document.querySelector('#scores');
@@ -29,6 +30,7 @@ let numWins = 0;
 let totalScore = 0;
 let lastScore;
 let leaderboard;
+let currentLeaderboard;
 
 function dist(x1, y1, x2, y2) {
   return Math.hypot(x1-x2, y1-y2);
@@ -42,7 +44,8 @@ function win() {
   score.innerHTML = `Score: ${lastScore.toFixed(2)}`;
   totalScore += lastScore;
   avgscore.innerHTML = `Average score: <span>${(totalScore/numWins).toFixed(2)}</span>`;
-  showLeaderboard();
+  if (currentLeaderboard !== numDots)
+    showLeaderboard();
   submit.disabled = false;
 }
 
@@ -115,6 +118,7 @@ function frame() {
 }
 
 function startGame() {
+  submit.disabled = true;
   ctx.clearRect(0, 0, canvas.width, canvas.height);
   dotArray = [];
   pathDistance = 0;
@@ -136,21 +140,16 @@ function startGame() {
   distance.innerHTML = 'Distance: 0.0';
   score.innerHTML = 'Score: ?';
   message.innerHTML = '';
-  hideLeaderboard();
   startTime = performance.now();
 }
 
 async function showLeaderboard() {
-  leaderboard = (await axios.get(`/scores?dots=${numDots}`)).data;
-  leaderboarddiv.innerHTML = `<b>${numDots} dots leaderboard</b><br>`;
+  currentLeaderboard = dots.value;
+  leaderboard = (await axios.get(`/scores?dots=${currentLeaderboard}`)).data;
+  leaderboarddiv.innerHTML = `<b>${currentLeaderboard} dots leaderboard</b><br>`;
   for (let score of leaderboard)
     leaderboarddiv.innerHTML += `${score.name === name.value?'<b>':''}${score.name} <span>${score.score}</span>${score.name === name.value?'</b>':''}<br>`;
   leaderboarddiv.classList.remove('hidden');
-}
-
-function hideLeaderboard() {
-  leaderboarddiv.classList.add('hidden');
-  submit.disabled = true;
 }
 
 async function submitToLeaderboard() {
@@ -172,5 +171,6 @@ async function submitToLeaderboard() {
 }
 
 start.addEventListener('click', startGame);
+leaderboardbutton.addEventListener('click', showLeaderboard);
 submit.addEventListener('click', submitToLeaderboard);
 requestAnimationFrame(frame);

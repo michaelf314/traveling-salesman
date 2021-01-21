@@ -24,7 +24,7 @@ app.get('/scores', async (req, res) => {
 
 app.post('/scores', async (req, res) => {
   await Score.updateOne({dots: req.body.dots, name: req.body.name}, {$min: {score: req.body.score}}, {upsert: true});
-  res.send('Successfully submitted score');
+  res.send('Score submitted!');
 })
 
 const PORT = process.env.PORT || 3000;
