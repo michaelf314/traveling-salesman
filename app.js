@@ -15,7 +15,6 @@ const Score = mongoose.model('Score', scoreSchema);
 
 const leaderboardSize = 100;
 app.get('/scores', async (req, res) => {
-  // let leaderboard = await Score.find({dots: req.query.dots}).sort('score').limit(50).exec();
   let leaderboard = await Score.find({dots: req.query.dots}).sort('score').exec();
   res.send(leaderboard.slice(0, leaderboardSize));
   if (leaderboard.length > leaderboardSize) {
